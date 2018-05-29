@@ -1,9 +1,25 @@
 package groupSteganography;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
 	ArrayList<Integer> changes= new ArrayList<Integer>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("Please enter a string to be encoded");
+		Scanner input = new Scanner(System.in);
+		String toEncode = input.next(); 
+		char[] ind = toEncode.toCharArray();
+		int[] bin = new int[ind.length];
+		int i = 0; 
+		for(char a: ind) {
+			int toSave = a; 
+			bin[i] = toSave; 
+			i++;
+		}
+		System.out.println("success!");
+		
 
 	}
 	
