@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 public class Main {
 	ArrayList<Integer> changes = new ArrayList<Integer>();
+	public static int messageLength;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,6 +20,7 @@ public class Main {
 		String toEncode = input.nextLine();
 		char[] ind = toEncode.toCharArray();
 		int[] bin = new int[ind.length];
+		messageLength = bin.length;
 		int i = 0;
 		for (char a : ind) {
 			int toSave = a;
