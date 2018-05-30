@@ -9,7 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		System.out.println("Please enter a string to be encoded");
 		Scanner input = new Scanner(System.in);
-		String toEncode = input.next(); 
+		String toEncode = input.nextLine(); 
 		char[] ind = toEncode.toCharArray();
 		int[] bin = new int[ind.length];
 		int i = 0; 
@@ -18,7 +18,12 @@ public class Main {
 			bin[i] = toSave; 
 			i++;
 		}
-		System.out.println("success!");
+		i = 0; 
+		for(int b: bin) {
+			bin[i] = Integer.parseInt(Integer.toBinaryString(b));
+			System.out.println(bin[i]);
+			i++; 
+		}
 		
 
 	}
