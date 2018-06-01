@@ -33,7 +33,8 @@ public class Main {
 			System.out.println(bin[i]);
 			i++;
 		}
-
+		System.out.println(1000111 % 1000);
+		
 	}
 
 	public void addMesssage(String message) {
@@ -49,9 +50,9 @@ public class Main {
 		}
 	}
 
-	public void imageToBinary() throws IOException {
+	public static void imageToBinary() throws IOException {
 		BufferedImage image = ImageIO
-				.read(new File("H:\\12th Grade\\Computer Science\\300px-Color_icon_green.svg.png"));
+				.read(new File("csimage.png"));
 		int r = 0, g = 0, b = 0;
 		int w = image.getWidth();
 		int h = image.getHeight();
