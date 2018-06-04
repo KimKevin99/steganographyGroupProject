@@ -34,7 +34,7 @@ public class Main {
 			i++;
 		}
 		System.out.println(1000111 % 1000);
-		
+
 	}
 
 	public void addMesssage(String message) {
@@ -51,8 +51,7 @@ public class Main {
 	}
 
 	public static void imageToBinary() throws IOException {
-		BufferedImage image = ImageIO
-				.read(new File("csimage.png"));
+		BufferedImage image = ImageIO.read(new File("csimage.png"));
 		int r = 0, g = 0, b = 0;
 		int w = image.getWidth();
 		int h = image.getHeight();
