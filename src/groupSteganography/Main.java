@@ -1,6 +1,7 @@
 package groupSteganography;
 
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class Main {
 	ArrayList<Integer> changes = new ArrayList<Integer>();
 	public static int messageLength;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Please enter a string to be encoded");
 		Scanner input = new Scanner(System.in);
@@ -33,7 +34,8 @@ public class Main {
 			System.out.println(bin[i]);
 			i++;
 		}
-
+		System.out.println(i);
+		imageToBinary();
 	}
 
 	public void addMesssage(String message) {
@@ -50,7 +52,7 @@ public class Main {
 	}
 
 	public static void imageToBinary() throws IOException {
-		BufferedImage image = ImageIO.read(new File("csimage.png"));
+		BufferedImage image = ImageIO.read(new File("src/groupSteganography/csimage.jpg"));
 		int r = 0, g = 0, b = 0;
 		int w = image.getWidth();
 		int h = image.getHeight();
