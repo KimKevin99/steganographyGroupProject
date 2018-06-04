@@ -33,7 +33,6 @@ public class Main {
 			System.out.println(bin[i]);
 			i++;
 		}
-		System.out.println(1000111 % 1000);
 
 	}
 
