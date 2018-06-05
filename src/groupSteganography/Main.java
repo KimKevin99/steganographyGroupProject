@@ -34,8 +34,9 @@ public class Main {
 			System.out.println(bin[i]);
 			i++;
 		}
-		System.out.println(i);
 		imageToBinary();
+		Start start = new Start(); 
+		start.formatSetup();
 	}
 
 	public void addMesssage(String message) {
@@ -69,11 +70,13 @@ public class Main {
 			r = c.getRed();
 			g = c.getGreen();
 			b = c.getBlue();
+			/*
 			System.out.println("Element: " + (i + 1));
 			System.out.println("Red: " + Integer.toString(r, 2)); // converts to binary
 			System.out.println("Green: " + Integer.toString(g, 2));
 			System.out.println("Blue: " + Integer.toString(b, 2));
 			System.out.println("");
+			*/
 		}
 	}
 }
