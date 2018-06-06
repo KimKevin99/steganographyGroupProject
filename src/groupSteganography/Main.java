@@ -16,24 +16,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Please enter a string to be encoded");
-		Scanner input = new Scanner(System.in);
-		String toEncode = input.nextLine();
-		char[] ind = toEncode.toCharArray();
-		int[] bin = new int[ind.length];
-		messageLength = bin.length;
-		int i = 0;
-		for (char a : ind) {
-			int toSave = a;
-			bin[i] = toSave;
-			i++;
-		}
-		i = 0;
-		for (int b : bin) {
-			bin[i] = Integer.parseInt(Integer.toBinaryString(b));
-			System.out.println(bin[i]);
-			i++;
-		}
 		imageToBinary();
 		Start start = new Start(); 
 		start.formatSetup();
