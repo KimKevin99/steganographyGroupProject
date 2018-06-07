@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -65,7 +66,6 @@ public class Decoder {
 		}
 	}
 
-<<<<<<< HEAD
 	private class fileClick implements ActionListener { // decodes the images
 
 		@Override
@@ -77,38 +77,27 @@ public class Decoder {
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+				try {
+					ArrayList<Color> img = imageToArray(ImageIO.read(chooser.getSelectedFile()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		}
-=======
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	
-            JFileChooser chooser = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG & GIF Images", "jpg", "gif");
-            chooser.setFileFilter(filter);
-            int returnVal = chooser.showOpenDialog();
-            if(returnVal == JFileChooser.APPROVE_OPTION) {
-               System.out.println("You chose to open this file: " +
-                    chooser.getSelectedFile().getName());
-               ArrayList<Color> img=imageToArray(ImageIO.read(chooser.getSelectedFile()));
-            }
-          
-       
-        }
-    }
-	
-	//converts to image to an arraylist of colors, where first 8 bits represent red, next 8 blue, final 8 green
-    public ArrayList<Color> imageToArray(BufferedImage img) throws IOException {
-		FastRGB imgColors = new FastRGB(img);
-		ArrayList<Color> colors = new ArrayList<Color>();
-		for (int i = 0; i < img.getWidth(); i++) {
-			for (int j = 0; j < img.getHeight(); j++) {
-				colors.add(new Color(img.getRGB(i, j)));
+
+		// converts to image to an arraylist of colors, where first 8 bits represent
+		// red, next 8 blue, final 8 green
+		public ArrayList<Color> imageToArray(BufferedImage img) throws IOException {
+			FastRGB imgColors = new FastRGB(img);
+			ArrayList<Color> colors = new ArrayList<Color>();
+			for (int i = 0; i < img.getWidth(); i++) {
+				for (int j = 0; j < img.getHeight(); j++) {
+					colors.add(new Color(img.getRGB(i, j)));
+				}
 			}
+			return colors;
 		}
-		return colors;
->>>>>>> 800763a90468dda7a7089246448e9b46fad161cf
 	}
 }
