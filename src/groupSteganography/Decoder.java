@@ -25,7 +25,9 @@ public class Decoder {
 	private File changed;
 	private int width = 1000;
 	private int height = 1000;
-	ArrayList<Color> changedImage = null; // color array for change image
+	ArrayList<Color> changedImage = null; // color array for changed image
+	ArrayList<Color> originalImage = null; // color array for original image
+
 
 	public void formatSetup() throws IOException {
 		frame.setSize(width, height);
@@ -73,11 +75,23 @@ public class Decoder {
 			JFileChooser chooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files Only", "jpg", "png", "tif");
 			chooser.setFileFilter(filter);
+			//prompts to choose changed image
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				changed = chooser.getSelectedFile(); 
 				try {
 					changedImage = imageToArray(ImageIO.read(changed));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			//prompts to choose original image
+			int returnVal = chooser.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				changed = chooser.getSelectedFile(); 
+				try {
+					originalImage = imageToArray(ImageIO.read(changed));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
