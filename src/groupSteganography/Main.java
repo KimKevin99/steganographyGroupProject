@@ -33,7 +33,6 @@ public class Main {
 		}
 	}
 
-<<<<<<< HEAD
 	public static void imageToBinary() throws IOException {
 		BufferedImage image = ImageIO.read(new File("src/groupSteganography/csimage.jpg"));
 		int r = 0, g = 0, b = 0;
@@ -60,7 +59,4 @@ public class Main {
 			 */
 		}
 	}
-=======
-	
->>>>>>> 800763a90468dda7a7089246448e9b46fad161cf
 }
