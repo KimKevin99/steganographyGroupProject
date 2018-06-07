@@ -39,9 +39,7 @@ public class Decoder {
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		panel.add(picLabel);
 
-		BufferedImage myPicture2 = ImageIO.read(new File("src/groupSteganography/csimage.jpg"));
-		JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
-		panel.add(picLabel2);
+		
 
 		JButton fileChoose = new JButton("Please insert a file");
 		fileChoose.addActionListener((ActionListener) new fileClick());
@@ -77,16 +75,24 @@ public class Decoder {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				
-				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
-				
+				changed = chooser.getSelectedFile(); 
 				try {
-					changedImage = imageToArray(ImageIO.read(chooser.getSelectedFile()));
+					changedImage = imageToArray(ImageIO.read(changed));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
+			BufferedImage myPicture2 = null;
+			try {
+				myPicture2 = ImageIO.read(changed);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
+			panel.add(picLabel2);
+			frame.add(panel);
 
 		}
 
