@@ -16,8 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		imageToBinary();
-		Start start = new Start(); 
+		Start start = new Start();
 		start.formatSetup();
 	}
 
@@ -53,12 +52,11 @@ public class Main {
 			g = c.getGreen();
 			b = c.getBlue();
 			/*
-			System.out.println("Element: " + (i + 1));
-			System.out.println("Red: " + Integer.toString(r, 2)); // converts to binary
-			System.out.println("Green: " + Integer.toString(g, 2));
-			System.out.println("Blue: " + Integer.toString(b, 2));
-			System.out.println("");
-			*/
+			 * System.out.println("Element: " + (i + 1)); System.out.println("Red: " +
+			 * Integer.toString(r, 2)); // converts to binary System.out.println("Green: " +
+			 * Integer.toString(g, 2)); System.out.println("Blue: " + Integer.toString(b,
+			 * 2)); System.out.println("");
+			 */
 		}
 	}
 }
