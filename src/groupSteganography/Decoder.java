@@ -68,7 +68,7 @@ public class Decoder {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        	/*
+        	
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & GIF Images", "jpg", "gif");
@@ -77,8 +77,20 @@ public class Decoder {
             if(returnVal == JFileChooser.APPROVE_OPTION) {
                System.out.println("You chose to open this file: " +
                     chooser.getSelectedFile().getName());
-            }*/
+               ArrayList<Color> img=imageToArray(ImageIO.read(chooser.getSelectedFile()));
+            }
+          
        
         }
     }
+    public ArrayList<Color> imageToArray(BufferedImage img) throws IOException {
+		FastRGB imgColors = new FastRGB(img);
+		ArrayList<Color> colors = new ArrayList<Color>();
+		for (int i = 0; i < img.getWidth(); i++) {
+			for (int j = 0; j < img.getHeight(); j++) {
+				colors.add(new Color(img.getRGB(i, j)));
+			}
+		}
+		return colors;
+	}
 }
