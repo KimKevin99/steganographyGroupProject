@@ -45,6 +45,10 @@ public class Encoder {
         tf = new JTextField();
         panel.add(tf);
 
+        JButton fileChoose = new JButton("Please insert a file");
+        convert.addActionListener((ActionListener) new fileClick());
+        panel.add(fileChoose);
+
         JButton convert = new JButton("Convert");
         panel.add(convert);
         convert.addActionListener((ActionListener) new onClick());
@@ -55,11 +59,15 @@ public class Encoder {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        
+        JButton fileChoose = new JButton("Please insert a file");
+        convert.addActionListener((ActionListener) new fileClick());
+        panel.add(fileChoose);
+
     }
 
-
-    private class onClick implements ActionListener { //gets the text to encode
-
+    //gets the text to encode
+    private class onClick implements ActionListener { 
         @Override
         public void actionPerformed(ActionEvent e) {
         	String toEncode = tf.getText();
@@ -78,6 +86,27 @@ public class Encoder {
     			System.out.println(bin[i]);
     			i++;
     		}
+        }
+    }
+    
+    //decodes the images
+     private class fileClick implements ActionListener {  
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & GIF Images", "jpg", "gif");
+            chooser.setFileFilter(filter);
+            int returnVal = chooser.showOpenDialog();
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+               System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getName());
+               ArrayList<Color> img=imageToArray(ImageIO.read(chooser.getSelectedFile()));
+            }
+          
+       
         }
     }
 }
