@@ -83,6 +83,8 @@ public class Decoder {
        
         }
     }
+	
+	//converts to image to an arraylist of colors, where first 8 bits represent red, next 8 blue, final 8 green
     public ArrayList<Color> imageToArray(BufferedImage img) throws IOException {
 		FastRGB imgColors = new FastRGB(img);
 		ArrayList<Color> colors = new ArrayList<Color>();
