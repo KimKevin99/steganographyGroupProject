@@ -25,6 +25,7 @@ public class Decoder {
 	private File changed;
 	private int width = 1000;
 	private int height = 1000;
+	ArrayList<Color> img = null;
 
 	public void formatSetup() throws IOException {
 		frame.setSize(width, height);
@@ -78,7 +79,7 @@ public class Decoder {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
 				try {
-					ArrayList<Color> img = imageToArray(ImageIO.read(chooser.getSelectedFile()));
+					img = imageToArray(ImageIO.read(chooser.getSelectedFile()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
