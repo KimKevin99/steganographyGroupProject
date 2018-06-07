@@ -77,7 +77,9 @@ public class Decoder {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				
 				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+				
 				try {
 					img = imageToArray(ImageIO.read(chooser.getSelectedFile()));
 				} catch (IOException e1) {
