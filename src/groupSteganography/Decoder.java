@@ -87,7 +87,7 @@ public class Decoder {
 				}
 			}
 			//prompts to choose original image
-			int returnVal = chooser.showOpenDialog(null);
+			/*int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				changed = chooser.getSelectedFile(); 
 				try {
@@ -96,7 +96,7 @@ public class Decoder {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
+			}*/
 			BufferedImage myPicture2 = null;
 			try {
 				myPicture2 = ImageIO.read(changed);
@@ -107,6 +107,10 @@ public class Decoder {
 			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
 			panel.add(picLabel2);
 			frame.add(panel);
+			PrintWriter out=new Printwriter(new File("test.txt"));
+			out.println(read(changed));
+			out.close();
+			
 
 		}
 
@@ -121,6 +125,15 @@ public class Decoder {
 				}
 			}
 			return colors;
+		}
+		//converts the array to a message
+		public String read(ArrayList<Color> originalColor) {
+		StringBuilder message = new StringBuilder();
+		for (int i = 0; i < originalColor.size(); i++) {
+			message.append((char) originalColor.get(i).getBlue() % 8 + (char) originalColor.get(i).getRed() % 8
+					+ (char) originalColor.get(i).getGreen() % 4);
+		}
+		return message.toString();
 		}
 	}
 }
