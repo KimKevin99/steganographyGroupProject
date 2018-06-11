@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -107,9 +109,16 @@ public class Decoder {
 			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture2));
 			panel.add(picLabel2);
 			frame.add(panel);
-			PrintWriter out=new Printwriter(new File("test.txt"));
-			out.println(read(changed));
-			out.close();
+			PrintWriter out;
+			try {
+				out = new PrintWriter(new File("test.txt"));
+				out.println(read(changedImage));
+				out.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 			
 
 		}
@@ -129,9 +138,11 @@ public class Decoder {
 		//converts the array to a message
 		public String read(ArrayList<Color> originalColor) {
 		StringBuilder message = new StringBuilder();
-		for (int i = 0; i < originalColor.size(); i++) {
-			message.append((char) originalColor.get(i).getBlue() % 8 + (char) originalColor.get(i).getRed() % 8
-					+ (char) originalColor.get(i).getGreen() % 4);
+		for (int i = 0; i < 1000; i++) {
+			message.append((char) (originalColor.get(i).getBlue() % 8 *16 + originalColor.get(i).getRed() % 4 *4
+					+ originalColor.get(i).getGreen() % 4));
+			System.out.println(originalColor.get(i).getBlue() % 8 *16 + originalColor.get(i).getRed() % 4 *4
+					+ originalColor.get(i).getGreen() % 4);
 		}
 		return message.toString();
 		}
