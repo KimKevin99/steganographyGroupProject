@@ -103,7 +103,7 @@ public class Encoder {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
                 try {
-                    ArrayList<Color> img = imageToArray(ImageIO.read(chooser.getSelectedFile()));
+                    encode;
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -111,7 +111,7 @@ public class Encoder {
             }
 
         }
-
+        //deprecated
         public ArrayList<Color> imageToArray(BufferedImage img) {
             FastRGB imgColors = new FastRGB(img);
             ArrayList<Color> colors = new ArrayList<Color>();
@@ -122,22 +122,29 @@ public class Encoder {
             }
             return colors;
         }
-        
-        public void encode (BufferedImage img, ArrayList<Color> colors, String message){
+        //writes an image given the original and the message
+        public void encode (BufferedImage img, String message){
+            FastRGB imgColors = new FastRGB(img);
+            ArrayList<Color> colors = new ArrayList<Color>();
+             BufferedImage encodedImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB); 
              for (int i = 0; i < img.getWidth(); i++) {
                 for (int j = 0; j < img.getHeight(); j++) {
-                    if (characterValue = message.charAt(i * img.getHeight() + j) != null){
-                        int red = (colors.get(i * img.getHeight() + j).getRed() / 8) * 8 + characterValue / 16;
+                    int currentColor = imgColors.getRGB(i, j);
+                    if (characterValue = message.charAt(i * img.getHeight() + j) != null) {        
+                        int red = ((currentColor >> 16) / 8) * 8 + characterValue / 16
+                        // int red = (colors.get(i * img.getHeight() + j).getRed() / 8) * 8 + characterValue / 16;
                         characterValue -= characterValue / 16;
-                        int green = (colors.get(i * img.getHeight() + j).getGreen() / 4) * 4 + characterValue / 4;
+                        int green = (((currentColor >> 8) % 256) / 4) * 4 + characterValue / 4;
                         characterValue -= characterValue / 4;
-                        int blue = (colors.get(i * img.getHeight() + j).getBlue() / 4) * 4 + characterValue;
-                        colors.set(red, green, blue);
-                        characterValue = 0;
+                        int blue = ((currentColor % 65536) / 4) * 4 + characterValue;
+                        encodedImage.setRGB(i, j, new Color red + green + blue));
+                    }else {
+                        encodedImage.setRGB(i, j, currentColor);
                     }
                 }
             }
-                   // colors.add(new Color(img.getRGB(i, j)));
+            File outputFile = new File("/output.bmp");
+            ImageIO.write(encodedImage, "bmp", outputFile);
         }
 
     }
