@@ -18,5 +18,5 @@
 
 # Budget Estimates: 4 in-class weeks
 
-# Risks and Contingency Plans: If we fall behind, it will be difficult to make up the necessary work. There is no back-up solution to this. 
+# Risks and Contingency Plans: If we fall behind, we will have to do additional work at home. 
 
