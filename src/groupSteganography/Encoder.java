@@ -122,6 +122,23 @@ public class Encoder {
             }
             return colors;
         }
+        
+        public void encode (BufferedImage img, ArrayList<Color> colors, String message){
+             for (int i = 0; i < img.getWidth(); i++) {
+                for (int j = 0; j < img.getHeight(); j++) {
+                    int characterValue = 0;
+                    if (characterValue = message.charAt(i * img.getHeight() + j) != null){
+                        int red = (colors.get(i * img.getHeight() + j).getRed() / 8) * 8 + characterValue / 16;
+                        characterValue -= characterValue / 16;
+                        int green = (colors.get(i * img.getHeight() + j).getGreen() / 4) * 4 + characterValue / 4;
+                        characterValue -= characterValue / 4;
+                        int blue = (colors.get(i * img.getHeight() + j).getBlue() / 4) * 4 + characterValue;
+                        colors.set(red, green, blue);
+                    }
+                }
+                
+             }
+                   // colors.add(new Color(img.getRGB(i, j)));
 
     }
 
