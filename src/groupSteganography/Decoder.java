@@ -143,9 +143,9 @@ public class Decoder {
 		public String read(ArrayList<Color> originalColor) {
 		StringBuilder message = new StringBuilder();
 		for (int i = 0; i < 1000; i++) {
-			message.append((char) (originalColor.get(i).getBlue() % 8 *16 + originalColor.get(i).getRed() % 4 *4
+			message.append((char) (originalColor.get(i).getBlue() % 8 * 16 + originalColor.get(i).getRed() % 4 * 4
 					+ originalColor.get(i).getGreen() % 4));
-			System.out.println(originalColor.get(i).getBlue() % 8 *16 + originalColor.get(i).getRed() % 4 *4
+			System.out.println(originalColor.get(i).getBlue() % 8 * 16 + originalColor.get(i).getRed() % 4 * 4
 					+ originalColor.get(i).getGreen() % 4);
 		}
 		return message.toString();
