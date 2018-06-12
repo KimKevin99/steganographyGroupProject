@@ -39,11 +39,11 @@ public class Encoder {
         panel.setSize(width, height);
         panel.setBackground(Color.WHITE);
 
-        BufferedImage myPicture = ImageIO.read(new File("E:\\Allen\\12th Grade\\Computer Science\\csimage.jpg"));
+        BufferedImage myPicture = ImageIO.read(new File("src\\groupSteganography\\csimage.jpg"));
         picLabel = new JLabel(new ImageIcon(myPicture));
         panel.add(picLabel);
 
-        BufferedImage myPicture2 = ImageIO.read(new File("E:\\Allen\\12th Grade\\Computer Science\\csimage.jpg"));
+        BufferedImage myPicture2 = ImageIO.read(new File("src\\groupSteganography\\csimage.jpg"));
         this.myPicture2 = myPicture2;
         picLabel2 = new JLabel(new ImageIcon());
         panel.add(picLabel2);
@@ -100,12 +100,12 @@ public class Encoder {
             FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
             chooser.setFileFilter(filter);
             int returnVal = chooser.showOpenDialog(null);
+            File chosen = chooser.getSelectedFile();
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
                 try {
-                    encode;
+                    encode(ImageIO.read(chosen), tf.getText());
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
+                    // TODO Auto-generated catch blocks
                     e1.printStackTrace();
                 }
             }
@@ -127,18 +127,17 @@ public class Encoder {
             FastRGB imgColors = new FastRGB(img);
             ArrayList<Color> colors = new ArrayList<Color>();
             BufferedImage encodedImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB); 
-            boolean complete = false;
             int i=0;
             int j=0;
-            int characterValue;
-            while (characterValue = message.charAt(i * img.getHeight() + j) != null && i < img.getWidth()){
+            while ((i * img.getHeight() + j) < message.length()  && i < img.getWidth()){
+            	int characterValue = message.charAt(i * img.getHeight() + j);
                 int currentColor = imgColors.getRGB(i, j);
                 int red = ((currentColor >> 16) / 8) * 8 + characterValue / 16;
                 characterValue -= characterValue / 16;
                 int green = (((currentColor >> 8) % 256) / 4) * 4 + characterValue / 4;
                 characterValue -= characterValue / 4;
                 int blue = ((currentColor % 65536) / 4) * 4 + characterValue;
-                encodedImage.setRGB(i, j, new Color (red + green + blue));
+                encodedImage.setRGB(i, j, 65536 * red + 256 * green + blue);
                 j++;
                 if (j == img.getHeight()){
                     j = 0;
@@ -152,14 +151,19 @@ public class Encoder {
                 j = 0;
                 i++;
             }
-            for (i; i < img.getWidth(); i++) {
-                for (j; j < img.getHeight(); j++) {
-                    int currentColor = imgColors.getRGB(i, j);
-                    encodedImage.setRGB(i, j, currentColor);                 
+            for (int x = i; x < img.getWidth(); x++) {
+                for (int y = j; y < img.getHeight(); y++) {
+                    int currentColor = imgColors.getRGB(x, y);
+                    encodedImage.setRGB(x, y, currentColor);                 
                 }
             }
-            File outputFile = new File("/output.bmp");
-            ImageIO.write(encodedImage, "bmp", outputFile);
+            File outputFile = new File("output.png");
+            try {
+				ImageIO.write(encodedImage, "png", outputFile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 
     }

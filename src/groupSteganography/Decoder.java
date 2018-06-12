@@ -130,7 +130,7 @@ public class Decoder {
 			ArrayList<Color> colors = new ArrayList<Color>();
 			for (int i = 0; i < img.getWidth(); i++) {
 				for (int j = 0; j < img.getHeight(); j++) {
-					if (img.getRGB(i, j)==4){
+					if (imgColors.getRGB(i, j)==4){
 						break;
 					} else{
 						colors.add(new Color(img.getRGB(i, j)));
